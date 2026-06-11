@@ -1,38 +1,322 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap');
+
+/* Layout Config & Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Silkscreen', monospace;
 }
 
-.App-logo {
-  height: 40vmin;
+body {
+  overflow: hidden;
+  background: transparent;
+}
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  background-color: #e2a9f1;
+  border-radius: 10px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  -webkit-app-region: drag;
+}
+
+/* Top title window bar header */
+.header-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #ffffff;
+  font-size: 13px;
+  margin-bottom: 8px;
+  padding: 0 4px;
+}
+
+.window-controls {
+  display: flex;
+  gap: 6px;
+  -webkit-app-region: no-drag;
+}
+
+.win-btn {
+  background: transparent;
+  border: 1px solid #ffffff;
+  color: #ffffff;
+  width: 20px;
+  font-size: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.win-btn.close-btn:hover {
+  background-color: #FF6B6B;
+  border-color: #FF6B6B;
+}
+
+/* The main panel card */
+.main-board {
+  flex: 1;
+  width: 100%;
+  background-color: #a07acf;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  padding: 14px;
+  position: relative;
+  background-image: url('../public/background.png');
+  background-size: cover;
+  background-position: bottom;
+  overflow: hidden;
+}
+
+.title-text {
+  text-align: center;
+  color: #ffffff;
+  font-size: 26px;
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+  text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.15);
+}
+
+/* Progress block module */
+.progress-card {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 12px;
+  padding: 12px 14px;
+  margin-bottom: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.progress-left-column{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.progress-left-column h2 {
+  font-size: 13px;
+  font-weight: normal;
+  color: #ffffff;
+  text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.1);
+  line-height: 1.3;
+}
+
+/* Expanding Logic Progress Bar Container */
+.progress-bar-bg {
+  width: 100%; 
+  height: 16px;
+  background-color: #ffffff;
+  border-radius: 20px;
+  overflow: hidden;
+  padding: 2px;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background-color: #cc80e0;
+  border-radius: 20px;
+  transition: width 0.50s ease-out;
+}
+
+/* Right Side Wrapper Content*/
+.counter-circle-wrapper {
+  position: relative;
+  width: 72px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.counter-circle {
+  background-color: #e2a9f1;
+  font-size: 18px;
+  text-align: center;
+  color: #ffffff;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Shifts the text slightly up so the cat doesn't mask the numbers */
+  padding-bottom: 8px; 
+  z-index: 1;
+}
+
+/* Cat Display Element Overlay */
+.cat-head {
+  position: absolute;
+  right: -30px;
+  bottom: -40px;
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
+  z-index: 2;
+  pointer-events: none; /* Allows clicks to pass through if necessary */
+}
+
+.cat-head.jump {
+  animation: pixelBounce 0.45s ease-out;
+}
+
+@keyframes pixelBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); } 
+}
+
+/* Text Input Area Element */
+.input-area {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+  -webkit-app-region: no-drag;
+}
+
+.input-area input {
+  flex: 1;
+  background-color: #ffffff;
+  border: none;
+  outline: none;
+  border-radius: 18px;
+  padding: 8px 16px;
+  font-size: 11px;
+  color: #7E61A1;
+}
+
+.input-area input::placeholder {
+  color: #e2a9f1;
+}
+
+.add-btn {
+  background-color: #e2a9f1;
+  border: none;
+  color: #ffffff;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Vertical Scrollable Track Element */
+.todo-list-scrollable {
+  height: 160px; 
+  overflow-y: auto;
+  padding-right: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  -webkit-app-region: no-drag;
+}
+
+/* Custom Scrollbar Styling */
+.todo-list-scrollable::-webkit-scrollbar {
+  width: 6px;
+}
+
+.todo-list-scrollable::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 10px;
+}
+
+/* To Do Task List Item Containers */
+.task-item {
+  background-color: #ebc8f4;
+  border-radius: 20px;
+  padding: 8px 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.2s ease;
+}
+
+.task-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  cursor: pointer;
+}
+
+.custom-checkbox {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 1px solid #b384bf;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.checkmark {
+  font-size: 10px;
+  font-weight: 700;
+  color: #b384bf;
+  text-shadow: none;
+}
+
+.task-text {
+  font-size: 11px;
+  color: #7e61a1;
+}
+
+.task-item.completed {
+  opacity: 0.65;
+}
+
+.task-item.completed .task-text {
+  text-decoration: line-through;
+}
+
+.edit-inline-input {
+  background: transparent;
+  border: none;
+  border-bottom: 1px dashed #7e61a1;
+  outline: none;
+  color: #7e61a1;
+  font-size: 11px;
+  width: 80%;
+}
+
+/* Task Interactive Button Actions */
+.task-actions {
+  display: flex;
+  gap: 4px;
+}
+
+.action-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 12px;
+  padding: 2px;
+  transition: transform 0.1s ease, opacity 0.2s ease;
+  opacity: 0;
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.task-item:hover .action-btn {
+  opacity: 1;
+  pointer-events: auto;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.action-btn:hover {
+  transform: scale(1.15);
 }

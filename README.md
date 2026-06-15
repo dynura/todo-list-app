@@ -1,10 +1,10 @@
-# 🌸 Stay Organized! To-Do Widget
+# Stay Organized! To-Do Widget
 
 A beautiful, pastel-themed pixel-art desktop to-do widget built with **React**, **TypeScript**, and **Electron**. Features a dynamic completion milestone banner, an interactive pixel cat avatar that jumps when tasks are completed, custom frameless window controls, and satisfying pixelated audio effects.
 
 ---
 
-## ✨ Features
+## Features
 
 - **Pixel Art Design:** Styled entirely with the `Silkscreen` monospace font and crisp pixel assets.
 - **Dynamic Completion Milestones:** Celebrates your productivity with responsive banners like *"Add some tasks to get started!"*, *"Making progress! Keep it up!"*, and *"All tasks completed! Great job!"*.
@@ -14,7 +14,7 @@ A beautiful, pastel-themed pixel-art desktop to-do widget built with **React**, 
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 
